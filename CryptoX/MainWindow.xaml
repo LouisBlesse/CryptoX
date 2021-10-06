@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="562" Width="1000">
     <Grid Background="#121212">
+        <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+               Foreground="Gold" Content="CryptoX" FontSize="60" FontWeight="Bold"
+               HorizontalAlignment="Left" Height="100" Margin="300,231,0,0" VerticalAlignment="Top" Width="400"/>
+        <Button Content="Start" FontSize="30" Foreground="Gold" Background="#121212"
+                HorizontalAlignment="Left" Height="50" Margin="437,425,0,0" VerticalAlignment="Top" Width="125" Click="Button_Click"/>
 
     </Grid>
 </Window>
