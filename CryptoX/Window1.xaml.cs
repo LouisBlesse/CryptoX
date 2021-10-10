@@ -22,6 +22,10 @@ namespace CryptoX
         public Window1()
         {
             InitializeComponent();
+            /*LunarCrush.Connect().ContinueWith(res => {
+                val.Text = res.Result;
+            });*/
+            val.Text = LunarCrush.Connect().Result;
         }
     }
 }

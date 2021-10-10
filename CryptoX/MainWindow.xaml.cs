@@ -30,7 +30,7 @@ namespace CryptoX
         {
             Window1 p = new Window1();
             p.Show();
-
+            //p.val.Text = test;
         }
     }
 }
