@@ -28,8 +28,17 @@ namespace CryptoX
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Window1 p = new Window1();
-            p.Show();
+            try
+            {
+                Window1 p = new Window1();
+                p.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
+                        
             //p.val.Text = test;
         }
     }

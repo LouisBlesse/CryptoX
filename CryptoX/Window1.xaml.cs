@@ -22,10 +22,13 @@ namespace CryptoX
         public Window1()
         {
             InitializeComponent();
-            /*LunarCrush.Connect().ContinueWith(res => {
-                val.Text = res.Result;
-            });*/
-            val.Text = LunarCrush.Connect().Result;
+            Initialize();
+        }
+
+        public async Task Initialize()
+        {
+            LunarCrush Lune = new LunarCrush();
+            val.Text = await Lune.Connect();
         }
     }
 }
