@@ -29,6 +29,22 @@ namespace CryptoX
         {
             LunarCrush Lune = new LunarCrush();
             val.Text = await Lune.Connect();
+            List<string> AllName = new List<string>() { } ;
+
+            try
+            {
+                LunarCrush.Root tmp = Lune.transfert(val.Text);
+                for (int i=0; i<tmp.data.Count; i++)
+                {
+                    AllName.Add(tmp.data[i].name);
+                }
+                choix.ItemsSource = AllName;
+            }
+            catch (Exception e)
+            {
+                val2.Text = e.ToString();
+            }
+
         }
     }
 }

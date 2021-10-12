@@ -7,11 +7,14 @@
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
     <Grid Background="AliceBlue">
-        <TextBox Name="val" HorizontalAlignment="Left" Height="87" 
-				 Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="239" 
+        <TextBox Name="val" HorizontalAlignment="Left" Height="315" 
+				 Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="553" 
 				 VerticalScrollBarVisibility="Auto"/>
-        <!--<Label Name="val" Content="Value 1" HorizontalAlignment="Left" Height="25" Margin="263,181,0,0" VerticalAlignment="Top" Width="87"/>-->
-        
+        <ComboBox Name="choix" HorizontalAlignment="Left" Height="26" Margin="624,114,0,0" VerticalAlignment="Top" Width="95">
+            
+        </ComboBox>
+        <TextBox Name="val2" HorizontalAlignment="Left" Height="58" Margin="74,350,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="465"/>
+
 
     </Grid>
 </Window>
