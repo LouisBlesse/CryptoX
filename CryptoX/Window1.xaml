@@ -14,7 +14,8 @@
         <ComboBox Name="choix" HorizontalAlignment="Left" Height="26" Margin="624,114,0,0" VerticalAlignment="Top" Width="95">
         </ComboBox>
         <TextBox Name="val2" HorizontalAlignment="Left" Height="58" Margin="74,350,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="465"/>
+		<Button Content="Recherche" Click="Button_Clicked" HorizontalAlignment="Left" Height="45" Margin="624,158,0,0" VerticalAlignment="Top" Width="95"/>
 
 
-    </Grid>
+	</Grid>
 </Window>

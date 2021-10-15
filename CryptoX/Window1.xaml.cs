@@ -21,10 +21,12 @@ namespace CryptoX
     /// </summary>
     public partial class Window1 : Window
     {
+        private static Task<LunarCrush.Root> AllData;
+
         public Window1()
         {
             InitializeComponent();
-            Initialize();
+            Window1.AllData = Initialize();
             //GetCheckBox(AllData);
         }
 
@@ -49,24 +51,26 @@ namespace CryptoX
             {
                 val2.Text = e.ToString();
             }
-            GetCheckBox(tmp);
+            //GetCheckBox(tmp);
             return tmp;
         }
 
-        private void GetCheckBox(LunarCrush.Root AllData)
+        private void GetCheckBox(Task<LunarCrush.Root> AllData)
         {
-            val2.Text = "try"; //work
-            /*LunarCrush Lune = new LunarCrush();
-            var AllData = Lune.Connect();
-            var requete = from data in AllData.
-                          select name where ;*/
-            for (int i = 0; i < AllData.data.Count; i++)
-            {
-                if (AllData.data[i].name == choix.SelectedIndex.ToString())//dosn't work
-                {
-                    val2.Text = "La crypto monaie est le " + AllData.data[i].name + "sa valeure est de " + AllData.data[i].price + ".";
-                }
-            }
+            val2.Text = "try GetCheckBox";
+            var queryAllDataName = from Data in AllData.Result.data
+                                    where Data.name == choix.Text
+                               select Data;
+
+
+
+            val2.Text = "La crypto monaie est le " + queryAllDataName.name.Single() + "sa valeure est de ";// TODO voir comment retrun un objet
+        }
+
+        private void Button_Clicked(object sender, RoutedEventArgs e)
+        {
+            val2.Text = "try Button_Clicked";
+            GetCheckBox(Window1.AllData);
         }
     }
 }
