@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Linq;
 using System.Threading;
 
 namespace CryptoX
@@ -27,7 +26,7 @@ namespace CryptoX
         {
             InitializeComponent();
             Window1.AllData = Initialize();
-            //Task<DataToDisplay> Datas = GetTheTop(AllData); ////Dont work
+            List<DataToDisplay> ToDisplay = GetTheTop(AllData); ////Dont work
         }
 
         private async Task<LunarCrush.Root> Initialize()
@@ -56,8 +55,8 @@ namespace CryptoX
         private void GetCheckBox(Task<LunarCrush.Root> AllData)
         {
             var queryAllDataName = from Data in AllData.Result.data
-                                    where Data.name == choix.Text
-                               select new { name = Data.name, price = Data.price};
+                                   where Data.name == choix.Text
+                                   select new { name = Data.name, price = Data.price};
 
 
             foreach (var item in queryAllDataName)
@@ -72,16 +71,22 @@ namespace CryptoX
             GetCheckBox(Window1.AllData);
         }
 
-
         //////////Graphiques (dont work)
         ///
-        private Task<DataToDisplay> GetTheTop (Task<LunarCrush.Root> AllData)
+        private List<DataToDisplay> GetTheTop (Task<LunarCrush.Root> AllData)
         {
-            var queryTop = (from Data in AllData.Result.data
-                             orderby Data.price
-                           select new DataToDisplay { name = Data.name, price = Data.price }).Take(5);
+            List<DataToDisplay> AllDataToDisplay = new List<DataToDisplay>() { };
 
-            return (Task<DataToDisplay>)queryTop;
+            /*var queryTop = (from Data in AllData.Result.data
+                              orderby Data.price
+                            select new DataToDisplay { name = Data.name, price = Data.price }).Take(5);*/
+
+             /*foreach (var item in queryTop.Take(5))
+             {
+                 AllDataToDisplay.Add(item);
+             }*/
+
+            return AllDataToDisplay;
         }
 
 
