@@ -27,7 +27,7 @@ namespace CryptoX
         {
             InitializeComponent();
             Window1.AllData = Initialize();
-            //GetCheckBox(AllData);
+            //Task<DataToDisplay> Datas = GetTheTop(AllData); ////Dont work
         }
 
         private async Task<LunarCrush.Root> Initialize()
@@ -36,7 +36,6 @@ namespace CryptoX
             val.Text = await Lune.Connect();
             List<string> AllName = new List<string>() { } ;
             LunarCrush.Root tmp = Lune.transfert(val.Text);
-
 
             try
             {
@@ -51,26 +50,45 @@ namespace CryptoX
             {
                 val2.Text = e.ToString();
             }
-            //GetCheckBox(tmp);
             return tmp;
         }
 
         private void GetCheckBox(Task<LunarCrush.Root> AllData)
         {
-            val2.Text = "try GetCheckBox";
             var queryAllDataName = from Data in AllData.Result.data
                                     where Data.name == choix.Text
-                               select Data;
+                               select new { name = Data.name, price = Data.price};
 
 
-
-            val2.Text = "La crypto monaie est le " + queryAllDataName.name.Single() + "sa valeure est de ";// TODO voir comment retrun un objet
+            foreach (var item in queryAllDataName)
+            {
+                val2.Text = "La crypto monaie est le " + item.name + "sa valeure est de "+ item.price+".";
+            }
         }
 
         private void Button_Clicked(object sender, RoutedEventArgs e)
         {
             val2.Text = "try Button_Clicked";
             GetCheckBox(Window1.AllData);
+        }
+
+
+        //////////Graphiques (dont work)
+        ///
+        private Task<DataToDisplay> GetTheTop (Task<LunarCrush.Root> AllData)
+        {
+            var queryTop = (from Data in AllData.Result.data
+                             orderby Data.price
+                           select new DataToDisplay { name = Data.name, price = Data.price }).Take(5);
+
+            return (Task<DataToDisplay>)queryTop;
+        }
+
+
+        public class DataToDisplay
+        {
+            public string name { get; set; }
+            public double? price { get; set; }
         }
     }
 }

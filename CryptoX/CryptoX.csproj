@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Syncfusion.SfChart.WPF" Version="19.3.0.45" />
   </ItemGroup>
 
 </Project>
