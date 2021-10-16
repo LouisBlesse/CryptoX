@@ -21,12 +21,12 @@ namespace CryptoX
     public partial class Window1 : Window
     {
         private static Task<LunarCrush.Root> AllData;
+        private static List<DataToDisplay> AllDataToDisplay = new List<DataToDisplay>() { };
 
         public Window1()
         {
             InitializeComponent();
             Window1.AllData = Initialize();
-            List<DataToDisplay> ToDisplay = GetTheTop(AllData); ////Dont work
         }
 
         private async Task<LunarCrush.Root> Initialize()
@@ -38,7 +38,7 @@ namespace CryptoX
 
             try
             {
-                for (int i=0; i<tmp.data.Count; i++)
+                for (int i=0; i<20; i++)
                 {
                     AllName.Add(tmp.data[i].name);
                 }
@@ -71,21 +71,25 @@ namespace CryptoX
             GetCheckBox(Window1.AllData);
         }
 
-        //////////Graphiques (dont work)
-        ///
+        private void Button_Clicked_Get(object sender, RoutedEventArgs e)
+        {
+            Window1.AllDataToDisplay = GetTheTop(Window1.AllData);
+        }
+
+        //////////Graphiques
         private List<DataToDisplay> GetTheTop (Task<LunarCrush.Root> AllData)
         {
             List<DataToDisplay> AllDataToDisplay = new List<DataToDisplay>() { };
 
-            /*var queryTop = (from Data in AllData.Result.data
-                              orderby Data.price
-                            select new DataToDisplay { name = Data.name, price = Data.price }).Take(5);*/
+            var queryTop = (from Data in AllData.Result.data
+                              orderby Data.price.HasValue
+                            select new DataToDisplay { name = Data.name, price = Data.price }).Take(5);
 
-             /*foreach (var item in queryTop.Take(5))
+             foreach (DataToDisplay item in queryTop)
              {
                  AllDataToDisplay.Add(item);
-             }*/
-
+            }
+            
             return AllDataToDisplay;
         }
 

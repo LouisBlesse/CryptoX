@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CryptoX" xmlns:chart="http://schemas.syncfusion.com/wpf"
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
-    <Grid Background="AliceBlue">
+    <Grid Panel.ZIndex="1"> <!--Background="AliceBlue"--> 
         <TextBox Name="val" HorizontalAlignment="Left" Height="315" 
 				 Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="553" 
 				 VerticalScrollBarVisibility="Auto" Visibility="Hidden"/>
@@ -16,17 +16,17 @@
         <TextBox Name="val2" HorizontalAlignment="Left" Height="58" Margin="159,95,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="465"/>
         <Button Content="Recherche" Click="Button_Clicked" HorizontalAlignment="Left" Height="45" Margin="31,97,0,0" VerticalAlignment="Top" Width="95"/>
 
-        <Button Content="Voir les cryptomonaies les plus cheres du moment"  HorizontalAlignment="Left" Height="45" Margin="31,181,0,0" VerticalAlignment="Top" Width="300"/>
+        <Button Content="Voir les cryptomonaies les plus cheres du moment" Click="Button_Clicked_Get" HorizontalAlignment="Left" Height="45" Margin="31,181,0,0" VerticalAlignment="Top" Width="300"/>
 
-        <!--<chart:SfChart Width="300" Height="200" Margin="417,181,83,53">
+        <chart:SfChart Background="Black" Width="300" Height="200" Margin="417,181,83,53" Panel.ZIndex="10">
             <chart:SfChart.PrimaryAxis>
                 <chart:CategoryAxis/>
             </chart:SfChart.PrimaryAxis>
             <chart:SfChart.SecondaryAxis>
                 <chart:NumericalAxis/>
             </chart:SfChart.SecondaryAxis>
-            <chart:ColumnSeries ItemsSource=" {Binding Datas}" XBindingPath="name" Background="Black"/>
-        </chart:SfChart>-->
+            <chart:ColumnSeries ItemsSource=" {Binding AllDataToDisplay}" XBindingPath="name" />
+        </chart:SfChart>
 
     </Grid>
 </Window>
