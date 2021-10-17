@@ -8,7 +8,7 @@ namespace CryptoX
 {
     class ViewModel
     {
-        private static List<Window1.DataToDisplay> AllDataToDisplay = new List<Window1.DataToDisplay>() { };
+        private static List<Window1.DataToDisplay> AllDataToDisplay { get; set; }
 
         public ViewModel(List<Window1.DataToDisplay> DataInList)
         {
