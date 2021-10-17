@@ -47,7 +47,11 @@ namespace CryptoX
             }
             catch (Exception e)
             {
-                val2.Text = e.ToString();
+                textbox2.Text = e.ToString();
+                textbox4.Text = e.ToString();
+                textbox6.Text = e.ToString();
+                textbox8.Text = e.ToString();
+                textbox10.Text = e.ToString();
             }
             return tmp;
         }
@@ -56,21 +60,29 @@ namespace CryptoX
         {
             var queryAllDataName = from Data in AllData.Result.data
                                    where Data.name == choix.Text
-                                   select new { name = Data.name, price = Data.price};
+                                   select new { Name = Data.name, Price = Data.price, Symbol = Data.symbol, Price_btc = Data.price_btc, Market_cap = Data.market_cap};
 
 
             foreach (var item in queryAllDataName)
             {
-                val2.Text = "La crypto monaie est le " + item.name + "sa valeure est de "+ item.price+".";
+                textbox2.Text = item.Name;
+                textbox4.Text = item.Symbol;
+                textbox6.Text = "" + item.Price;
+                textbox8.Text = "" + item.Price_btc;
+                textbox10.Text = "" + item.Market_cap;
             }
         }
 
         private void Button_Clicked(object sender, RoutedEventArgs e)
         {
-            val2.Text = "try Button_Clicked";
+            textbox2.Text = "try Button_Clicked";
+            textbox4.Text = "try Button_Clicked";
+            textbox6.Text = "try Button_Clicked";
+            textbox8.Text = "try Button_Clicked";
+            textbox10.Text = "try Button_Clicked";
             GetCheckBox(Window1.AllData);
         }
-
+        
         private void Button_Clicked_Get(object sender, RoutedEventArgs e)
         {
             Window1.AllDataToDisplay = GetTheTop(Window1.AllData);
