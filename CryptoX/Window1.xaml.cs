@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
+using Syncfusion.UI.Xaml.Charts;
 
 namespace CryptoX
 {
@@ -72,7 +73,7 @@ namespace CryptoX
                 textbox10.Text = "" + item.Market_cap;
             }
         }
-
+        //Boutonss
         private void Button_Clicked(object sender, RoutedEventArgs e)
         {
             textbox2.Text = "try Button_Clicked";
@@ -94,17 +95,45 @@ namespace CryptoX
             List<DataToDisplay> AllDataToDisplay = new List<DataToDisplay>() { };
 
             var queryTop = (from Data in AllData.Result.data
-                              orderby Data.price.HasValue
+                              orderby Data.price.HasValue descending
                             select new DataToDisplay { name = Data.name, price = Data.price }).Take(5);
 
              foreach (DataToDisplay item in queryTop)
              {
                  AllDataToDisplay.Add(item);
             }
-            
+            debug.Text = "names ="+AllDataToDisplay[0].name+AllDataToDisplay[1].name+AllDataToDisplay[2].name + AllDataToDisplay[3].name+AllDataToDisplay[4].name
+                +"price =" + AllDataToDisplay[0].price + AllDataToDisplay[1].price + AllDataToDisplay[2].price + AllDataToDisplay[3].price + AllDataToDisplay[4].price;
+            Graph(AllDataToDisplay);
             return AllDataToDisplay;
         }
 
+        public void Graph (List<DataToDisplay> AllDataToDisplay)
+        {
+            SfChart chart = new SfChart();
+
+            CategoryAxis primaryAxis = new CategoryAxis();
+
+            primaryAxis.Header = "Name";
+
+            chart.PrimaryAxis = primaryAxis;
+
+            NumericalAxis secondaryAxis = new NumericalAxis();
+
+            secondaryAxis.Header = "Price (in Euro)";
+
+            chart.SecondaryAxis = secondaryAxis;
+
+            //////////
+            ///
+            ColumnSeries series = new ColumnSeries();
+
+            series.ItemsSource = (new ViewModel(AllDataToDisplay));
+            series.XBindingPath = "name";
+            series.YBindingPath = "price";
+
+            chart.Series.Add(series);
+        }
 
         public class DataToDisplay
         {
@@ -112,4 +141,5 @@ namespace CryptoX
             public double? price { get; set; }
         }
     }
+
 }
