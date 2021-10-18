@@ -38,8 +38,7 @@ namespace CryptoX
                 MessageBox.Show(ex.ToString());
                 throw;
             }
-                        
-            //p.val.Text = test;
+                     
         }
     }
 }

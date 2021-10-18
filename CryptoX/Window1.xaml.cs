@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
-using Syncfusion.UI.Xaml.Charts;
+using System.Web;
 
 namespace CryptoX
 {
@@ -73,14 +73,11 @@ namespace CryptoX
                 textbox10.Text = "" + item.Market_cap;
             }
         }
-        //Boutonss
+
+
+        //Boutons
         private void Button_Clicked(object sender, RoutedEventArgs e)
         {
-            textbox2.Text = "try Button_Clicked";
-            textbox4.Text = "try Button_Clicked";
-            textbox6.Text = "try Button_Clicked";
-            textbox8.Text = "try Button_Clicked";
-            textbox10.Text = "try Button_Clicked";
             GetCheckBox(Window1.AllData);
         }
         
@@ -102,38 +99,11 @@ namespace CryptoX
              {
                  AllDataToDisplay.Add(item);
             }
-            debug.Text = "names ="+AllDataToDisplay[0].name+AllDataToDisplay[1].name+AllDataToDisplay[2].name + AllDataToDisplay[3].name+AllDataToDisplay[4].name
-                +"price =" + AllDataToDisplay[0].price + AllDataToDisplay[1].price + AllDataToDisplay[2].price + AllDataToDisplay[3].price + AllDataToDisplay[4].price;
-            Graph(AllDataToDisplay);
+            
+            Graph.Source = new BitmapImage(new Uri(QChart.Build(@AllDataToDisplay))); //Ligne de code tres compliquée pour récuperer l'urlk sous forme de string et la remettre en url
             return AllDataToDisplay;
         }
 
-        public void Graph (List<DataToDisplay> AllDataToDisplay)
-        {
-            SfChart chart = new SfChart();
-
-            CategoryAxis primaryAxis = new CategoryAxis();
-
-            primaryAxis.Header = "Name";
-
-            chart.PrimaryAxis = primaryAxis;
-
-            NumericalAxis secondaryAxis = new NumericalAxis();
-
-            secondaryAxis.Header = "Price (in Euro)";
-
-            chart.SecondaryAxis = secondaryAxis;
-
-            //////////
-            ///
-            ColumnSeries series = new ColumnSeries();
-
-            series.ItemsSource = (new ViewModel(AllDataToDisplay));
-            series.XBindingPath = "name";
-            series.YBindingPath = "price";
-
-            chart.Series.Add(series);
-        }
 
         public class DataToDisplay
         {
