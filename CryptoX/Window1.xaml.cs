@@ -72,6 +72,9 @@ namespace CryptoX
                 textbox8.Text = "" + item.Price_btc;
                 textbox10.Text = "" + item.Market_cap;
             }
+
+            /*Graph p = new Graph(textbox4.Text);
+            p.Show();*/
         }
 
 

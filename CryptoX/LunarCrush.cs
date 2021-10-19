@@ -33,6 +33,16 @@ namespace CryptoX
             return myDeserializedClass;
         }
 
+        public async Task<string> ConnectSecond(string symbol)
+        {
+            string res =
+                    await client.GetStringAsync(
+                        "https://api.lunarcrush.com/v2?data=assets&key=0yhms1bivd391vg0g7klyb1&symbol="+ symbol);
+
+            return res;
+        }
+
+
 
         public class Config
         {
